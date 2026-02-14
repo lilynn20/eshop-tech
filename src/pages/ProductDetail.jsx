@@ -55,23 +55,33 @@ function ProductDetail() {
   }
 
   return (
-    <section className="section">
-      <div className="detail">
-        <div className="detail-media">
-          <img src={product.image} alt={product.title} />
+    <section className="grid gap-6">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-10 items-center">
+        <div className="bg-[#f7f1e8] rounded-[20px] p-8 grid place-items-center">
+          <img
+            className="max-w-full max-h-[320px] object-contain"
+            src={product.image}
+            alt={product.title}
+          />
         </div>
-        <div className="detail-body">
-          <Link to="/" className="text-link">
+        <div className="space-y-3">
+          <Link to="/" className="text-[#ffb347] no-underline font-semibold">
             Retour a la boutique
           </Link>
           <h1>{product.title}</h1>
-          <p className="detail-price">{product.price.toFixed(2)} EUR</p>
-          <p className="detail-description">{product.description}</p>
-          <div className="detail-actions">
-            <button className="button" onClick={() => dispatch(addItem(product))}>
+          <p className="text-2xl font-bold">{product.price.toFixed(2)} MAD</p>
+          <p className="text-white/80">{product.description}</p>
+          <div className="flex gap-4 flex-wrap">
+            <button
+              className="inline-flex items-center justify-center rounded-full px-5 py-2.5 font-bold transition-colors bg-[#ffb347] text-[#1a1a1a] hover:bg-[#ffc76f]"
+              onClick={() => dispatch(addItem(product))}
+            >
               Ajouter au panier
             </button>
-            <Link to="/panier" className="button ghost">
+            <Link
+              to="/panier"
+              className="inline-flex items-center justify-center rounded-full px-5 py-2.5 font-bold transition-colors border border-white/40 text-[#f5f4f1] hover:border-white/60"
+            >
               Voir le panier
             </Link>
           </div>

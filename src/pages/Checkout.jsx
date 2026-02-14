@@ -89,13 +89,14 @@ function Checkout() {
   }
 
   return (
-    <section className="section">
+    <section className="grid gap-6">
       <h1>Finaliser la commande</h1>
-      <div className="checkout">
-        <form className="form" onSubmit={handleSubmit} noValidate>
-          <div className="field">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-8">
+        <form className="grid gap-4" onSubmit={handleSubmit} noValidate>
+          <div className="grid gap-2">
             <label htmlFor="fullName">Nom complet</label>
             <input
+              className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
               id="fullName"
               name="fullName"
               value={form.fullName}
@@ -104,14 +105,15 @@ function Checkout() {
               placeholder="Votre nom et prenom"
             />
             {touched.fullName && errors.fullName && (
-              <span className="field-error">{errors.fullName}</span>
+              <span className="text-rose-300 text-sm">{errors.fullName}</span>
             )}
           </div>
 
-          <div className="field-grid">
-            <div className="field">
+          <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
+            <div className="grid gap-2">
               <label htmlFor="email">Email</label>
               <input
+                className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
                 id="email"
                 name="email"
                 type="email"
@@ -121,12 +123,13 @@ function Checkout() {
                 placeholder="exemple@mail.com"
               />
               {touched.email && errors.email && (
-                <span className="field-error">{errors.email}</span>
+                <span className="text-rose-300 text-sm">{errors.email}</span>
               )}
             </div>
-            <div className="field">
+            <div className="grid gap-2">
               <label htmlFor="phone">Telephone</label>
               <input
+                className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
                 id="phone"
                 name="phone"
                 value={form.phone}
@@ -135,14 +138,15 @@ function Checkout() {
                 placeholder="0600000000"
               />
               {touched.phone && errors.phone && (
-                <span className="field-error">{errors.phone}</span>
+                <span className="text-rose-300 text-sm">{errors.phone}</span>
               )}
             </div>
           </div>
 
-          <div className="field">
+          <div className="grid gap-2">
             <label htmlFor="address">Adresse</label>
             <input
+              className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
               id="address"
               name="address"
               value={form.address}
@@ -151,14 +155,15 @@ function Checkout() {
               placeholder="12 rue des Tech"
             />
             {touched.address && errors.address && (
-              <span className="field-error">{errors.address}</span>
+              <span className="text-rose-300 text-sm">{errors.address}</span>
             )}
           </div>
 
-          <div className="field-grid">
-            <div className="field">
+          <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
+            <div className="grid gap-2">
               <label htmlFor="city">Ville</label>
               <input
+                className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
                 id="city"
                 name="city"
                 value={form.city}
@@ -167,12 +172,13 @@ function Checkout() {
                 placeholder="Paris"
               />
               {touched.city && errors.city && (
-                <span className="field-error">{errors.city}</span>
+                <span className="text-rose-300 text-sm">{errors.city}</span>
               )}
             </div>
-            <div className="field">
+            <div className="grid gap-2">
               <label htmlFor="postalCode">Code postal</label>
               <input
+                className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
                 id="postalCode"
                 name="postalCode"
                 value={form.postalCode}
@@ -181,14 +187,15 @@ function Checkout() {
                 placeholder="75000"
               />
               {touched.postalCode && errors.postalCode && (
-                <span className="field-error">{errors.postalCode}</span>
+                <span className="text-rose-300 text-sm">{errors.postalCode}</span>
               )}
             </div>
           </div>
 
-          <div className="field">
+          <div className="grid gap-2">
             <label htmlFor="delivery">Livraison</label>
             <select
+              className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
               id="delivery"
               name="delivery"
               value={form.delivery}
@@ -200,9 +207,10 @@ function Checkout() {
             </select>
           </div>
 
-          <div className="field">
+          <div className="grid gap-2">
             <label htmlFor="notes">Instructions</label>
             <textarea
+              className="px-3 py-2.5 rounded-[10px] border border-white/30 bg-white/5 text-inherit"
               id="notes"
               name="notes"
               value={form.notes}
@@ -212,7 +220,7 @@ function Checkout() {
             />
           </div>
 
-          <div className="field checkbox">
+          <div className="grid gap-2 grid-cols-[auto,1fr] items-center">
             <input
               id="terms"
               name="terms"
@@ -223,33 +231,38 @@ function Checkout() {
             />
             <label htmlFor="terms">J'accepte les conditions.</label>
             {touched.terms && errors.terms && (
-              <span className="field-error">{errors.terms}</span>
+              <span className="text-rose-300 text-sm">{errors.terms}</span>
             )}
           </div>
 
-          <button className="button" type="submit">
+          <button
+            className="inline-flex items-center justify-center rounded-full px-5 py-2.5 font-bold transition-colors bg-[#ffb347] text-[#1a1a1a] hover:bg-[#ffc76f]"
+            type="submit"
+          >
             Valider la commande
           </button>
 
           {submitted && (
-            <p className="success">Commande prise en compte. Merci !</p>
+            <p className="text-green-200 font-semibold">
+              Commande prise en compte. Merci !
+            </p>
           )}
         </form>
 
-        <aside className="summary">
+        <aside className="bg-white/10 p-6 rounded-[18px] border border-white/10">
           <h2>Resume</h2>
-          <div className="summary-items">
+          <div>
             {items.length === 0 && <p>Votre panier est vide.</p>}
             {items.map((item) => (
-              <div key={item.id} className="summary-row">
+              <div key={item.id} className="flex justify-between text-sm">
                 <span>{item.title}</span>
                 <span>x{item.quantity}</span>
               </div>
             ))}
           </div>
-          <div className="summary-total">
+          <div className="mt-4 flex justify-between text-[1.1rem] font-bold">
             <span>Total</span>
-            <strong>{total.toFixed(2)} EUR</strong>
+            <strong>{total.toFixed(2)} MAD</strong>
           </div>
         </aside>
       </div>

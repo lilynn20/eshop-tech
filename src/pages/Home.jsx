@@ -41,28 +41,30 @@ function Home() {
   }, [])
 
   return (
-    <section className="section">
-      <div className="hero">
+    <section className="grid gap-6">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8 items-center mb-12">
         <div>
-          <p className="eyebrow">Nouveau stock 2026</p>
+          <p className="uppercase tracking-[0.2em] text-xs text-[#ffb347] font-bold">
+            Nouveau stock 2026
+          </p>
           <h1>Equipements premium pour votre setup</h1>
-          <p className="lead">
+          <p className="text-[1.05rem] max-w-[520px]">
             PC portables, ecrans, accessoires et composants testes par notre
             equipe.
           </p>
         </div>
-        <div className="hero-card">
-          <p className="hero-title">Service express</p>
+        <div className="bg-white/10 p-6 rounded-[18px] border border-white/10">
+          <p className="font-bold mb-2">Service express</p>
           <p>Commande en ligne, retrait en magasin sous 2h.</p>
         </div>
       </div>
 
-      <h2 className="section-title">Selection high-tech</h2>
+      <h2 className="mb-6">Selection high-tech</h2>
 
       {status === 'loading' && <Loader label="Chargement du catalogue..." />}
       {status === 'error' && <ErrorState message={error} />}
       {status === 'success' && (
-        <div className="grid">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
