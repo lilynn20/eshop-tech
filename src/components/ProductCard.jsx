@@ -12,7 +12,11 @@ function ProductCard({ product }) {
   return (
     <article className="bg-white/10 rounded-[18px] overflow-hidden flex flex-col min-h-full border border-white/10 animate-rise">
       <div className="bg-[#f7f1e8] grid place-items-center h-[200px] p-4">
-        <img src={product.image} alt={product.title} loading="lazy" />
+        <img
+          src={product.image ?? product.thumbnail ?? product.images?.[0]}
+          alt={product.title}
+          loading="lazy"
+        />
       </div>
       <div className="p-5 flex flex-col gap-3">
         <h3>{product.title}</h3>
@@ -21,7 +25,17 @@ function ProductCard({ product }) {
           <Link to={`/produit/${product.id}`} className={ghostButton}>
             Detail
           </Link>
-          <button className={primaryButton} onClick={() => dispatch(addItem(product))}>
+          <button
+            className={primaryButton}
+            onClick={() =>
+              dispatch(
+                addItem({
+                  ...product,
+                  image: product.image ?? product.thumbnail ?? product.images?.[0],
+                }),
+              )
+            }
+          >
             Ajouter
           </button>
         </div>

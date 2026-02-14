@@ -18,13 +18,16 @@ function ProductDetail() {
       setStatus('loading')
       setError('')
       try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`)
+        const response = await fetch(`https://dummyjson.com/products/${id}`)
         if (!response.ok) {
           throw new Error('Produit introuvable')
         }
         const data = await response.json()
         if (isActive) {
-          setProduct(data)
+          setProduct({
+            ...data,
+            image: data.thumbnail ?? data.images?.[0],
+          })
           setStatus('success')
         }
       } catch (fetchError) {
@@ -60,7 +63,7 @@ function ProductDetail() {
         <div className="bg-[#f7f1e8] rounded-[20px] p-8 grid place-items-center">
           <img
             className="max-w-full max-h-[320px] object-contain"
-            src={product.image}
+            src={product.image ?? product.thumbnail ?? product.images?.[0]}
             alt={product.title}
           />
         </div>
@@ -74,7 +77,14 @@ function ProductDetail() {
           <div className="flex gap-4 flex-wrap">
             <button
               className="inline-flex items-center justify-center rounded-full px-5 py-2.5 font-bold transition-colors bg-[#ffb347] text-[#1a1a1a] hover:bg-[#ffc76f]"
-              onClick={() => dispatch(addItem(product))}
+              onClick={() =>
+                dispatch(
+                  addItem({
+                    ...product,
+                    image: product.image ?? product.thumbnail ?? product.images?.[0],
+                  }),
+                )
+              }
             >
               Ajouter au panier
             </button>
